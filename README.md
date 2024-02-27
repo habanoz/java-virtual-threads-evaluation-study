@@ -1,5 +1,7 @@
 ## Virtual Threads Evaluation Study
 
+[My blog post on this study.](https://habanoz.github.io/tech-posts/analysis/java-virtual-threads-benchmark-comparison/)
+
 ### Launch Application
 
 Run synchronous application. 
@@ -28,4 +30,3 @@ cd monitor-test
 docker-compose up --build
 docker-compose run k6 run /scripts/register_user.js
 ```
-

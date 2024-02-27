@@ -1,0 +1,49 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: ${APP_CONTEXT}
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=${DBC_PROTOCOL}:postgresql://db:5432/mydatabase
+      - SPRING_DATASOURCE_USERNAME=myuser
+      - SPRING_DATASOURCE_PASSWORD=mypassword
+      - JAVA_OPTS=-Xmx1g
+      - VT_ENABLE=false
+    volumes:
+      - /container/logs:/logs
+    networks:
+      - app
+      - load-test_grafana
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=mydatabase
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=secret
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - app
+volumes:
+  db-data:
+
+networks:
+  app:
+  load-test_grafana:
+    external: true

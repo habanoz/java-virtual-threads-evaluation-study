@@ -1,6 +1,6 @@
 ## Virtual Threads Evaluation Study
 
-[My blog post on this study.](https://habanoz.github.io/tech-posts/analysis/java-virtual-threads-benchmark-comparison/)
+[My blog post on this study.](https://habanoz.github.io/tech-feed/analysis/java-virtual-threads-benchmark-comparison/)
 
 ### Launch Application
 
